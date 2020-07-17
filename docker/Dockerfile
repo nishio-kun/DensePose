@@ -33,9 +33,10 @@ RUN apt-get install -y --no-install-recommends \
   libgflags-dev \
   cmake
 
-RUN git clone --branch master --recursive https://github.com/pytorch/pytorch.git
+RUN git clone --branch v1.5.1 --recursive https://github.com/pytorch/pytorch.git
 RUN pip install typing pyyaml==3.12
 WORKDIR /pytorch
+RUN git submodule sync
 RUN git submodule update --init --recursive
 RUN python setup.py install
 
